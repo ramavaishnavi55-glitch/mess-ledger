@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Paste YOUR key from the PlacedElite project page here. It proves this site is yours. -->
+  <meta name="placedelite-key" content="pe-fkmpcq">
+  <title>Mess Ledger</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1 data-testid="mess-name">Vaishnavi-Hotel-Mess</h1>
+    <p>Who ate, who paid, who owes — for our hostel mess.</p>
+  </header>
+
+  <main>
+    <section class="card" id="members">
+      <h2>Members (<span id="member-count">0</span>)</h2>
+      <form id="member-form">
+        <label>Name <input id="member-name" data-testid="member-name" maxlength="30" required></label>
+        <label>UPI id (optional) <input id="member-upi" data-testid="member-upi" placeholder="ravi@okaxis"></label>
+        <button type="submit" data-testid="add-member">Add member</button>
+      </form>
+      <p id="member-error" class="error" data-testid="member-error"></p>
+      <ul id="member-list" data-testid="member-list"></ul>
+    </section>
+
+    <section class="card" id="expenses">
+      <h2>Money spent</h2>
+      <form id="expense-form">
+        <label>Date <input id="expense-date" data-testid="expense-date" type="date" required></label>
+        <label>Paid by <select id="expense-payer" data-testid="expense-payer"></select></label>
+        <label>Amount (₹) <input id="expense-amount" data-testid="expense-amount" inputmode="decimal" required></label>
+        <label>For what <input id="expense-note" data-testid="expense-note" maxlength="60" placeholder="Rice 25 kg"></label>
+        <button type="submit" data-testid="add-expense">Add expense</button>
+      </form>
+      <p id="expense-error" class="error" data-testid="expense-error"></p>
+      <ul id="expense-list" data-testid="expense-list"></ul>
+    </section>
+
+    <section class="card wide" id="meals">
+      <h2>Meals eaten</h2>
+      <form id="meal-form">
+        <label>Day <input id="meal-date" data-testid="meal-date" type="date" required></label>
+        <button type="submit" data-testid="save-meals">Save this day</button>
+      </form>
+      <p class="hint">Meals per person for this day: 0 to 3 (breakfast, lunch, dinner). Saving again replaces the day.</p>
+      <div id="meal-grid" data-testid="meal-grid"></div>
+      <p id="meal-error" class="error" data-testid="meal-error"></p>
+      <p id="meal-saved" class="hint" data-testid="meal-saved"></p>
+    </section>
+  </main>
+
+  <footer>
+    Made by <span data-testid="made-by">ANNU RAMA VAISHNAVI</span> ·
+    <button type="button" id="reset-all" class="danger small" data-testid="reset-all">Clear all data</button>
+  </footer>
+
+  <!-- Order matters: store.js first, because the others use what it defines. -->
+  <script src="store.js"></script>
+  <script src="members.js"></script>
+  <script src="expenses.js"></script>
+  <script src="meals.js"></script>
+</body>
+</html>
