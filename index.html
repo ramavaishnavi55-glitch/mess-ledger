@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <header>
     <h1 data-testid="mess-name">Vaishnavi-Hotel-Mess</h1>
@@ -33,7 +35,8 @@
         <label>Date <input id="expense-date" data-testid="expense-date" type="date" required></label>
         <label>Paid by <select id="expense-payer" data-testid="expense-payer"></select></label>
         <label>Amount (₹) <input id="expense-amount" data-testid="expense-amount" inputmode="decimal" required></label>
-        <label>For what <input id="expense-note" data-testid="expense-note" maxlength="60" placeholder="Rice 25 kg"></label>
+        <label>For what <input id="expense-note" data-testid="expense-note" maxlength="60"
+            placeholder="Rice 25 kg"></label>
         <button type="submit" data-testid="add-expense">Add expense</button>
       </form>
       <p id="expense-error" class="error" data-testid="expense-error"></p>
@@ -46,10 +49,43 @@
         <label>Day <input id="meal-date" data-testid="meal-date" type="date" required></label>
         <button type="submit" data-testid="save-meals">Save this day</button>
       </form>
-      <p class="hint">Meals per person for this day: 0 to 3 (breakfast, lunch, dinner). Saving again replaces the day.</p>
+      <p class="hint">Meals per person for this day: 0 to 3 (breakfast, lunch, dinner). Saving again replaces the day.
+      </p>
       <div id="meal-grid" data-testid="meal-grid"></div>
       <p id="meal-error" class="error" data-testid="meal-error"></p>
       <p id="meal-saved" class="hint" data-testid="meal-saved"></p>
+    </section>
+    <section class="card wide" id="summary">
+      <h2>Month summary</h2>
+      <label class="month">Month <input id="month-picker" data-testid="month-picker" type="month"></label>
+      <div class="stats">
+        <div class="stat">Total spent <b data-testid="total-spent">₹0.00</b></div>
+        <div class="stat">Total meals <b data-testid="total-meals">0</b></div>
+        <div class="stat">Cost per meal <b data-testid="cost-per-meal">₹0.00</b></div>
+        <div class="stat">Average per head <b data-testid="per-head">₹0.00</b></div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Member</th>
+              <th>Meals</th>
+              <th>Paid</th>
+              <th>Share</th>
+              <th>Balance</th>
+            </tr>
+          </thead>
+          <tbody id="balance-body" data-testid="balance-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card wide" id="settle">
+      <h2>Settle up</h2>
+      <p id="settle-empty" data-testid="settle-empty">Everyone is settled. Nobody owes anything.</p>
+      <ul id="settle-list" data-testid="settle-list"></ul>
+      <p class="hint">"Pay with UPI" opens GPay / PhonePe / Paytm / BHIM on a phone with the amount filled in. On a
+        laptop, show the QR and scan it with your phone.</p>
     </section>
   </main>
 
@@ -63,5 +99,12 @@
   <script src="members.js"></script>
   <script src="expenses.js"></script>
   <script src="meals.js"></script>
+  <!-- QR code library from a CDN. integrity = a fingerprint, so a changed file is refused. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+    integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="ledger.js"></script>
+  <script src="summary.js"></script>
 </body>
+
 </html>
